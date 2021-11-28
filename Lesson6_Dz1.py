@@ -1,6 +1,7 @@
 # получение списка кортежей из файла
 import re
 import math
+
 with open('nginx_logs.txt', 'r', encoding='utf-8') as f:
     row = f.readline()
     result_list = []
@@ -19,22 +20,21 @@ result_list = zip(ip_list, in_method_list, url_download_list)
 
 print(*result_list, sep='\n')
 
-
 with open('test.txt', 'w', encoding='utf-8') as f:
     print(*result_list, sep='\n', file=f)
     # print(row,file=f)
     # print(ip_list,file=f )
     # print(in_method_list, file=f)
-    #mrint(url_download_list, file=f)
-#поиск спамера
+    # mrint(url_download_list, file=f)
+# поиск спамера
 
 print(len(ip_list))
 
-ip_dict = dict.fromkeys(ip_list,0)
+ip_dict = dict.fromkeys(ip_list, 0)
 
 for el in ip_list:
     if el in ip_dict:
         ip_dict[el] += 1
 
 print('Спамер:')
-print([(key,val) for key, val in ip_dict.items() if val == max(ip_dict.values())])
+print([(key, val) for key, val in ip_dict.items() if val == max(ip_dict.values())])
